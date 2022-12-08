@@ -1,6 +1,9 @@
 let dimension = 16;
 
-const newGridButton = document.querySelector('#new-grid');
+generateGrid(dimension);
+
+// Handle generating a new gride button
+const newGridButton = document.querySelector('.new-grid');
 newGridButton.addEventListener('click', function(e) {
   dimension = Number(prompt('Enter the size'));
 
@@ -11,29 +14,41 @@ newGridButton.addEventListener('click', function(e) {
   }
 });
 
+// Handle erase button
+const eraserButton = document.querySelector('.eraser');
+eraserButton.addEventListener('click', function(e) { 
+  const boxes = document.querySelectorAll('.box');
+  boxes.forEach(box => box.addEventListener('mouseover', function(e) {
+    this.style.backgroundColor = 'white';
+  }));
+});
+
 function generateGrid(dimension) {
   const container = document.querySelector('.container');
+  const containerWidth = container.offsetWidth - 4;
   container.textContent = ''; // reset
 
   for (let i = 0; i < dimension; i++) {
-    const row = document.createElement('div');
+    const div = document.createElement('div');
 
-    for (let j = 0; j < dimension; j++) {  
-      row.append(createSquare());
+    for (let j = 0; j < dimension; j++) {
+      const squareSize = containerWidth / dimension;
+      div.append(createSquare(squareSize));
     }
 
-    container.append(row);
+    container.append(div);
   }
 }
 
-function createSquare() {
+function createSquare(squareSize) {
   const div = document.createElement('div');
-
+  div.style.width = `${squareSize}px`;
+  div.style.height = `${squareSize}px`;
   div.addEventListener('mouseover', function(e) {
     e.target.style.backgroundColor = 'black';
   });
 
   div.classList.add('box');
-  
+
   return div;
 }
