@@ -51,3 +51,37 @@ button:hover {
 .dimension-display {
   margin-top: 20px;
 }
+
+/* Style input range */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  width: 200px;
+}
+
+          /***** Track Styles *****/
+/***** Chrome, Safari, Opera, and Edge Chromium *****/
+input[type="range"]::-webkit-slider-runnable-track {
+  background: white;
+  border: 1px solid black;
+  border-radius: 7px;
+  height: 0.5rem;
+}
+
+/******** Firefox ********/
+input[type="range"]::-moz-range-track {
+  background: white;
+  border: 1px solid black;
+  border-radius: 7px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  margin-top: -5px; /* Centers thumb on the track */
+  background-color: black;
+  border-radius: 10px;
+  height: 1rem;
+  width: 1rem;    
+}
