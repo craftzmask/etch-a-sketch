@@ -19,6 +19,8 @@ const eraserButton = document.querySelector('.eraser');
 eraserButton.addEventListener('click', function(e) { 
   const boxes = document.querySelectorAll('.box');
   boxes.forEach(box => changeColorWhenHover(box, 'white'));
+  removeActiveButton();
+  eraserButton.classList.add('active');
 });
 
 // Handle color mode button
@@ -26,6 +28,8 @@ const colorModeButton = document.querySelector('.color-mode');
 colorModeButton.addEventListener('click', function(e) { 
   const boxes = document.querySelectorAll('.box');
   boxes.forEach(box => changeColorWhenHover(box));
+  removeActiveButton();
+  colorModeButton.classList.add('active');
 });
 
 // Handle clear button
@@ -34,6 +38,11 @@ clearButton.addEventListener('click', function(e) {
   const boxes = document.querySelectorAll('.box');
   boxes.forEach(box => box.style.backgroundColor = 'white');
 });
+
+function removeActiveButton() {
+  const buttons = document.querySelectorAll('button');
+  buttons.forEach(button => button.classList.remove('active'));
+}
 
 // Change color to black by default
 function changeColorWhenHover(ele, color='black') {
@@ -44,7 +53,7 @@ function changeColorWhenHover(ele, color='black') {
 
 function generateGrid(dimension) {
   const container = document.querySelector('.container');
-  const containerWidth = container.offsetWidth - 4;
+  const containerWidth = container.offsetWidth;
   container.textContent = ''; // reset
 
   for (let i = 0; i < dimension; i++) {
