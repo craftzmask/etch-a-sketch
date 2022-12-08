@@ -23,6 +23,15 @@ eraserButton.addEventListener('click', function(e) {
   }));
 });
 
+// Handle color mode button
+const colorModeButton = document.querySelector('.color-mode');
+colorModeButton.addEventListener('click', function(e) { 
+  const boxes = document.querySelectorAll('.box');
+  boxes.forEach(box => box.addEventListener('mouseover', function(e) {
+    this.style.backgroundColor = 'black';
+  }));
+});
+
 function generateGrid(dimension) {
   const container = document.querySelector('.container');
   const containerWidth = container.offsetWidth - 4;
