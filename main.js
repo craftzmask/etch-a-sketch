@@ -28,6 +28,13 @@ colorModeButton.addEventListener('click', function(e) {
   boxes.forEach(box => changeColorWhenHover(box));
 });
 
+// Handle clear button
+const clearButton = document.querySelector('.clear');
+clearButton.addEventListener('click', function(e) {
+  const boxes = document.querySelectorAll('.box');
+  boxes.forEach(box => box.style.backgroundColor = 'white');
+});
+
 // Change color to black by default
 function changeColorWhenHover(ele, color='black') {
   ele.addEventListener('mouseover', function(e) {
