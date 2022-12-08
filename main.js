@@ -18,19 +18,22 @@ newGridButton.addEventListener('click', function(e) {
 const eraserButton = document.querySelector('.eraser');
 eraserButton.addEventListener('click', function(e) { 
   const boxes = document.querySelectorAll('.box');
-  boxes.forEach(box => box.addEventListener('mouseover', function(e) {
-    this.style.backgroundColor = 'white';
-  }));
+  boxes.forEach(box => changeColorWhenHover(box, 'white'));
 });
 
 // Handle color mode button
 const colorModeButton = document.querySelector('.color-mode');
 colorModeButton.addEventListener('click', function(e) { 
   const boxes = document.querySelectorAll('.box');
-  boxes.forEach(box => box.addEventListener('mouseover', function(e) {
-    this.style.backgroundColor = 'black';
-  }));
+  boxes.forEach(box => changeColorWhenHover(box));
 });
+
+// Change color to black by default
+function changeColorWhenHover(ele, color='black') {
+  ele.addEventListener('mouseover', function(e) {
+    e.target.style.backgroundColor = color;
+  });
+}
 
 function generateGrid(dimension) {
   const container = document.querySelector('.container');
@@ -53,10 +56,7 @@ function createSquare(squareSize) {
   const div = document.createElement('div');
   div.style.width = `${squareSize}px`;
   div.style.height = `${squareSize}px`;
-  div.addEventListener('mouseover', function(e) {
-    e.target.style.backgroundColor = 'black';
-  });
-
+  changeColorWhenHover(div);
   div.classList.add('box');
 
   return div;
