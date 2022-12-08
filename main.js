@@ -18,7 +18,7 @@ newGridButton.addEventListener('click', function(e) {
 const eraserButton = document.querySelector('.eraser');
 eraserButton.addEventListener('click', function(e) { 
   const boxes = document.querySelectorAll('.box');
-  boxes.forEach(box => changeColorWhenHover(box, 'white'));
+  boxes.forEach(box => changeColorWhenHover(box));
   removeActiveButton();
   eraserButton.classList.add('active');
 });
@@ -27,7 +27,7 @@ eraserButton.addEventListener('click', function(e) {
 const colorModeButton = document.querySelector('.color-mode');
 colorModeButton.addEventListener('click', function(e) { 
   const boxes = document.querySelectorAll('.box');
-  boxes.forEach(box => changeColorWhenHover(box));
+  boxes.forEach(box => changeColorWhenHover(box, 'black'));
   removeActiveButton();
   colorModeButton.classList.add('active');
 });
@@ -44,8 +44,8 @@ function removeActiveButton() {
   buttons.forEach(button => button.classList.remove('active'));
 }
 
-// Change color to black by default
-function changeColorWhenHover(ele, color='black') {
+// Change color to white by default
+function changeColorWhenHover(ele, color='white') {
   ele.addEventListener('mouseover', function(e) {
     e.target.style.backgroundColor = color;
   });
