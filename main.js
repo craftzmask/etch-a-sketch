@@ -2,16 +2,14 @@ let dimension = 16;
 
 generateGrid(dimension);
 
-// Handle generating a new gride button
-const newGridButton = document.querySelector('.new-grid');
-newGridButton.addEventListener('click', function(e) {
-  dimension = Number(prompt('Enter the size'));
-
-  if (dimension < 1 || dimension > 100) {
-    alert('Dimension should be 1 to 100');
-  } else {
-    generateGrid(dimension);
-  }
+// Handle dimension generator
+const range = document.querySelector('.dimension');
+range.addEventListener('input', function(e) {
+  dimension = range.value;
+  const dimensionDisplay = document.querySelector('.dimension-display');
+  dimensionDisplay.textContent = `${dimension} x ${dimension}`;
+  generateGrid(dimension);
+  removeActiveButton();
 });
 
 // Handle erase button
@@ -32,12 +30,26 @@ colorModeButton.addEventListener('click', function(e) {
   colorModeButton.classList.add('active');
 });
 
+// Handle rainbow mode button
+const rainbowMode = document.querySelector('.rainbow-mode');
+rainbowMode.addEventListener('click', function(e) { 
+  const boxes = document.querySelectorAll('.box');
+  boxes.forEach(box => changeColorWhenHover(box, `rgb(${random()}, ${random()}, ${random()})`));
+  removeActiveButton();
+  rainbowMode.classList.add('active');
+});
+
 // Handle clear button
 const clearButton = document.querySelector('.clear');
 clearButton.addEventListener('click', function(e) {
   const boxes = document.querySelectorAll('.box');
   boxes.forEach(box => box.style.backgroundColor = 'white');
 });
+
+// Generate a random number range 0-255
+function random() {
+  return Math.floor(Math.random() * 255);
+}
 
 function removeActiveButton() {
   const buttons = document.querySelectorAll('button');
